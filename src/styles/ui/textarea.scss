@@ -1,0 +1,53 @@
+.ui-textarea {
+    padding-bottom: 20px;
+    
+    span {
+        font-weight: bold;
+        color: #fff;
+        font-size: 0.8em;
+        transition: ease-in-out 0.2s;
+    }
+
+    &:focus-within {
+        span {
+            color: #E8175D;
+            transition: ease-in-out 0.2s;
+        }
+
+        textarea {
+            border-color: #E8175D;
+        }
+    }
+
+    &:hover {
+        span {
+            color: #E8175D;
+            transition: ease-in-out 0.2s;
+        }
+
+        textarea {
+            border-color: #E8175D;
+            transition: ease-in-out 0.2s;
+        }
+    }
+
+    textarea {
+        font-family: sans-serif;
+        font-size: 1em;
+        height: 100%;
+        width: 100%;
+        line-height: 20px;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        padding: 4px 2px;
+        margin-top: 4px;
+        color: #fff;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+        resize: none;
+        transition: ease-in-out 0.2s;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.8)
+        }
+    }
+}

@@ -1,0 +1,33 @@
+html, #root {
+  height: 100%;
+  font-family: sans-serif;
+  background: #000b21;
+}
+
+.splash {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+
+  width: 150px;
+
+  .ui-input {
+    margin-top: 40px;
+  }
+
+  .ui-button {
+    margin-top: 20px;
+  }
+
+  .ui-textarea {
+    margin-top: 20px;
+    width: 200px;
+  }
+
+  p {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+  }
+}

@@ -1,0 +1,17 @@
+.ui-button {
+    font-size: 0.875em;
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    padding: 12px 32px;
+    color: #fff;
+    background: #E8175D;
+    border-radius: 4px;
+    transition: ease-in-out 0.2s;
+    cursor: pointer;
+
+    &:hover {
+        background: #c51550;
+        transition: ease-in-out 0.2s;
+    }
+}
