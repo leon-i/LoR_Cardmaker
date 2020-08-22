@@ -1,11 +1,11 @@
 import React from 'react';
-import CardForm from '../card_form/card_form';
+import CardFormContainer from '../card_form/card_form_container';
 import CardDisplay from '../card_display/card_display';
 
-const Splash : React.FC =  () => (
+const Splash : React.FC = () => (
     <div className='splash'>
-        <CardForm />
         <CardDisplay />
+        <CardFormContainer />
     </div>
 )
 

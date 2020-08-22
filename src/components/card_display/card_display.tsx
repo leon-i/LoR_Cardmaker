@@ -5,7 +5,9 @@ interface CardState {
     mana: number,
     name: string,
     keywords?: string[],
-    description: string
+    description: string,
+    cardType: string,
+    cardRarity: string
 }
 
 interface RootState {
@@ -17,10 +19,12 @@ interface Props {
 }
 
 const CardDisplay : React.FC<Props> = ({ card }) => (
-    <div>
+    <div className='card-display'>
         <p>{`Mana: ${card.mana}`}</p>
         <p>{`Name: ${card.name}`}</p>
         <p>{`Description: ${card.description}`}</p>
+        <p>{`Card Type: ${card.cardType}`}</p>
+        <p>{`Card Rarity: ${card.cardRarity}`}</p>
     </div>
 );
 

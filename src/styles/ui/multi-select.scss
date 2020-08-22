@@ -1,0 +1,32 @@
+.ui-multi-select {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+    color: white;
+
+    span {
+        font-weight: bold;
+    }
+
+    .multi-select-options {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+        margin-top: 16px;
+
+        h4 {
+            font-size: 0.875em;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            transition: ease-in-out 0.2s;
+            cursor: pointer;
+
+            &:hover {
+                color: #E8175D;
+                transition: ease-in-out 0.2s;
+            }
+        }
+    }
+}

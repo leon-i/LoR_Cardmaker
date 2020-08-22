@@ -2,32 +2,11 @@ import React from 'react';
 import Input from '../ui/input';
 import Select from '../ui/select';
 import Button from '../ui/button';
+import MultiSelect from '../ui/multi_select';
 import Textarea from '../ui/textarea';
-import { changeMana, resetMana } from '../../actions/mana_actions';
-import { changeName, resetName } from '../../actions/name_actions';
-import { changeDescription, resetDescription } from '../../actions/description_actions';
-import { connect } from 'react-redux';
-
-interface CardState {
-    mana: number,
-    name: string,
-    keywords?: string[],
-    description: string
-}
-
-interface RootState {
-    card: CardState
-}
-
-interface Props {
-    card: CardState,
-    changeMana: typeof changeMana,
-    resetMana: typeof resetMana,
-    changeName: typeof changeName,
-    resetName: typeof resetName,
-    changeDescription: typeof changeDescription,
-    resetDescription: typeof resetDescription
-}
+import { Props } from './card_form_container';
+import CARD_TYPES from '../../constants/card_types';
+import CARD_RARITIES from '../../constants/card_rarities';
 
 const CardForm : React.FC<Props> = ({ card, 
     changeMana, 
@@ -35,15 +14,24 @@ const CardForm : React.FC<Props> = ({ card,
     changeName, 
     resetName,
     changeDescription,
-    resetDescription }) => {
+    resetDescription,
+    changeCardType,
+    resetCardType,
+    changeCardRarity,
+    resetCardRarity }) => {
     const resetForm = () => {
         resetMana()
         resetName()
         resetDescription()
+        resetCardType()
+        resetCardRarity()
     };
 
+    const rarities = card.cardType === 'champion' ? Object.values(CARD_RARITIES).slice(4) : Object.values(CARD_RARITIES).slice(0, 4);
+    
     return (
-        <div>
+        <div className='card-form'>
+            <MultiSelect label={'Card Type'} options={Object.values(CARD_TYPES)} onClick={changeCardType} />
             <Input label={'Mana'} 
                 numOnly={true}
                 value={card.mana} 
@@ -57,22 +45,10 @@ const CardForm : React.FC<Props> = ({ card,
             <Button onClick={resetForm}>
                 Reset
             </Button>
+            <MultiSelect label={'Card Rarity'} options={rarities} onClick={changeCardRarity} />
         </div>
     )
 
 };
 
-const mapStateToProps = ({ card }: RootState) => ({
-    card
-});
-
-const mapDispatchToProps = ({
-    changeMana,
-    resetMana,
-    changeName,
-    resetName,
-    changeDescription,
-    resetDescription
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CardForm);
+export default CardForm;
