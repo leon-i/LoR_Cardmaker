@@ -1,0 +1,16 @@
+.splash {
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+  
+    .card-display {
+      width: 50%;
+    }
+  
+    p {
+      font-size: 2em;
+      font-weight: bold;
+      color: #fff;
+      margin-top: 20px;
+    }
+}

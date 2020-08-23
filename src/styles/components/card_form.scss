@@ -1,0 +1,32 @@
+.card-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    .number-inputs {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0 4em;
+
+        .ui-input {
+            width: 12%;
+        }
+    }
+
+    .ui-input, .ui-textarea, .ui-button {
+        align-self: flex-end;
+    }
+
+    .ui-input {
+        margin-top: 40px;
+    }
+
+    .ui-button {
+        margin-top: 20px;
+    }
+
+    .ui-textarea {
+        margin-top: 20px;
+    }
+}

@@ -12,7 +12,13 @@ const MultiSelect : React.FC<Props> = ({ label, options, value, onClick }) => (
         <span>{label}</span>
         <div className='multi-select-options'>
             {
-                options.map((option : string) => <h4 onClick={(e : any) => onClick(option)}>{option.toUpperCase()}</h4>)
+                options.map((option : string, idx: number) => {
+                    return option === value ? (
+                        <h4 className='selected' key={idx}>{option.toUpperCase()}</h4>
+                    ) : (
+                        <h4 onClick={(e : any) => onClick(option)} key={idx}>{option.toUpperCase()}</h4>
+                    )
+                })
             }
         </div>
     </div>

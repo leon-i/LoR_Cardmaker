@@ -10,42 +10,59 @@ import CARD_RARITIES from '../../constants/card_rarities';
 
 const CardForm : React.FC<Props> = ({ card, 
     changeMana, 
-    resetMana, 
     changeName, 
-    resetName,
+    changeHealth,
+    changePower,
     changeDescription,
-    resetDescription,
+    changeTribe,
+    changeLevelUp,
     changeCardType,
-    resetCardType,
     changeCardRarity,
-    resetCardRarity }) => {
-    const resetForm = () => {
-        resetMana()
-        resetName()
-        resetDescription()
-        resetCardType()
-        resetCardRarity()
-    };
-
+    resetCard }) => {
     const rarities = card.cardType === 'champion' ? Object.values(CARD_RARITIES).slice(4) : Object.values(CARD_RARITIES).slice(0, 4);
     
     return (
         <div className='card-form'>
-            <MultiSelect label={'Card Type'} options={Object.values(CARD_TYPES)} onClick={changeCardType} />
-            <Input label={'Mana'} 
-                numOnly={true}
-                value={card.mana} 
-                onChange={(e) => changeMana(e.target.value)} />
+            <MultiSelect label={'Card Type'} 
+                value={card.cardType}
+                options={Object.values(CARD_TYPES)} 
+                onClick={changeCardType} />
+            <div className='number-inputs'>
+                <Input label={'Mana'} 
+                    numOnly={true}
+                    value={card.mana} 
+                    onChange={(e) => changeMana(e.target.value)} />
+                <Input label={'Health'} 
+                    numOnly={true}
+                    value={card.health} 
+                    onChange={(e) => changeHealth(e.target.value)} />
+                <Input label={'Power'} 
+                    numOnly={true}
+                    value={card.power} 
+                    onChange={(e) => changePower(e.target.value)} />
+            </div>
             <Input label={'Name'} 
                 value={card.name} 
                 onChange={(e) => changeName(e.target.value)} />
             <Textarea label={'Description'}
                 value={card.description}
                 onChange={(e) => changeDescription(e.target.value)} />
-            <Button onClick={resetForm}>
+            {
+                card.cardType === 'champion' &&
+                <Textarea label={'Level Up'}
+                value={card.levelUp}
+                onChange={(e) => changeLevelUp(e.target.value)} />
+            }
+            <Input label={'Tribe'} 
+                value={card.tribe} 
+                onChange={(e) => changeTribe(e.target.value)} />
+            <MultiSelect label={'Card Rarity'} 
+                value={card.cardRarity}
+                options={rarities} 
+                onClick={changeCardRarity} />
+            <Button onClick={resetCard}>
                 Reset
             </Button>
-            <MultiSelect label={'Card Rarity'} options={rarities} onClick={changeCardRarity} />
         </div>
     )
 

@@ -20,6 +20,7 @@
             font-size: 0.875em;
             text-transform: uppercase;
             letter-spacing: .15em;
+            padding: 5px 7px;
             transition: ease-in-out 0.2s;
             cursor: pointer;
 
@@ -27,6 +28,10 @@
                 color: #E8175D;
                 transition: ease-in-out 0.2s;
             }
+        }
+
+        .selected {
+            color: #E8175D;
         }
     }
 }
