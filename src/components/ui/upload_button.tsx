@@ -21,16 +21,9 @@ const UploadButton : React.FC<Props> = ({ children, onUpload }) => {
             fileReader.readAsDataURL(file);
 
             fileReader.onloadend = () => {
-                // this.setState({
-                //     title: file.name,
-                //     videoFile: file,
-                //     videoUrl: fileReader.result
-                // });
-
                 onUpload(fileReader.result);
             }
         } else {
-            // this.setState({ videoFile: null, videoUrl: '' })
             onUpload('');
         }
     }

@@ -1,0 +1,48 @@
+.card-display {
+    width: 50%;
+
+    .card-main {
+        height: 100%;
+        position: relative;
+
+        .card-frame-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            height: 512px;
+            width: 340px;
+            overflow: hidden;
+
+            .card-frame {
+                position: relative;
+                height: 512px;
+                width: 340px;
+                z-index: 1;
+            }
+
+            .uploaded-img-container {
+                position: absolute;
+                max-width: 300px;
+                max-height: 455px;
+                overflow: hidden;
+                z-index: 0;
+
+                img {
+                    height: 100%;
+                    width: 100%;
+                }
+            }
+        }
+
+        .mana {
+            position: absolute;
+            z-index: 10;
+            top: 35px;
+            left: 20px;
+            width: 50px;
+            text-align: center;
+            margin: 0;
+        }
+    }
+}

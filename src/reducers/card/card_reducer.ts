@@ -13,21 +13,23 @@ import { CHANGE_TRIBE, TribeActionTypes } from '../../actions/tribe_actions';
 import { CHANGE_LEVEL_UP, LevelUpActionTypes } from '../../actions/level_up_actions';
 import { CHANGE_CARD_RARITY, CardRarityActionTypes} from '../../actions/card_rarity_actions';
 import { CHANGE_CARD_TYPE, CardTypeActionTypes} from '../../actions/card_type_actions';
+import { CHANGE_SPELL_TYPE, SpellTypeActionTypes } from '../../actions/spell_type_actions';
 import { UPLOAD_IMAGE, UploadImageActionTypes } from '../../actions/upload_image_actions';
 import { RESET_CARD, ResetCardAction } from '../../actions/card_actions';
 
 export interface CardState {
-    mana: number,
+    mana: number | string,
     name: string,
-    health: number,
-    power: number,
+    health: number | string,
+    power: number | string,
     keywords?: string[],
     description: string,
     tribe: string,
     levelUp: string,
     imageURL: string | ArrayBuffer | null,
     cardType: string,
-    cardRarity: string
+    cardRarity: string,
+    spellType: string
 }
 
 type CardActionTypes = ManaActionTypes | 
@@ -36,9 +38,10 @@ type CardActionTypes = ManaActionTypes |
                     DescriptionActionTypes | 
                     TribeActionTypes |
                     LevelUpActionTypes | 
-                    UploadImageActionTypes | 
                     CardRarityActionTypes | 
                     CardTypeActionTypes | 
+                    SpellTypeActionTypes | 
+                    UploadImageActionTypes | 
                     ResetCardAction;
 
 // export default combineReducers({
@@ -50,16 +53,17 @@ type CardActionTypes = ManaActionTypes |
 // });
 
 const initialState : CardState = {
-    mana: 0,
+    mana: '',
     name: '',
-    health: 0,
-    power: 0,
+    health: '',
+    power: '',
     description: '',
     tribe: '',
     levelUp: '',
     imageURL: '',
     cardType: 'follower',
-    cardRarity: 'uncollectable'
+    cardRarity: 'uncollectable',
+    spellType: 'burst'
 };
 
 export default (state : CardState = initialState, action: CardActionTypes) : CardState => {
@@ -79,8 +83,6 @@ export default (state : CardState = initialState, action: CardActionTypes) : Car
             return Object.assign({}, state, { tribe: action.payload });
         case CHANGE_LEVEL_UP:
             return Object.assign({}, state, { levelUp: action.payload });
-        case UPLOAD_IMAGE:
-            return Object.assign({}, state, { imageURL: action.payload });
         case CHANGE_CARD_TYPE:
             if (action.payload === 'champion') {
                 return Object.assign({}, state, { cardType: action.payload, cardRarity: action.payload});
@@ -91,6 +93,10 @@ export default (state : CardState = initialState, action: CardActionTypes) : Car
             }
         case CHANGE_CARD_RARITY:
             return Object.assign({}, state, { cardRarity: action.payload });
+        case CHANGE_SPELL_TYPE:
+            return Object.assign({}, state, { spellType: action.payload });
+        case UPLOAD_IMAGE:
+            return Object.assign({}, state, { imageURL: action.payload });
         case RESET_CARD:
             return initialState;
         default:

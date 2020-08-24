@@ -7,6 +7,7 @@ import Textarea from '../ui/textarea';
 import { Props } from './card_form_container';
 import CARD_TYPES from '../../constants/card_types';
 import CARD_RARITIES from '../../constants/card_rarities';
+import SPELL_TYPES from '../../constants/spell_types';
 
 const CardForm : React.FC<Props> = ({ card, 
     changeMana, 
@@ -18,6 +19,7 @@ const CardForm : React.FC<Props> = ({ card,
     changeLevelUp,
     changeCardType,
     changeCardRarity,
+    changeSpellType,
     resetCard }) => {
     const rarities = card.cardType === 'champion' ? Object.values(CARD_RARITIES).slice(4) : Object.values(CARD_RARITIES).slice(0, 4);
     
@@ -27,6 +29,13 @@ const CardForm : React.FC<Props> = ({ card,
                 value={card.cardType}
                 options={Object.values(CARD_TYPES)} 
                 onClick={changeCardType} />
+            {
+                card.cardType === 'spell' && 
+                <MultiSelect label={'Spell Type'} 
+                    value={card.spellType}
+                    options={Object.values(SPELL_TYPES)} 
+                    onClick={changeSpellType} />
+            }
             <div className='number-inputs'>
                 <Input label={'Mana'} 
                     numOnly={true}
