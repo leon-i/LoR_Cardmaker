@@ -1,32 +1,47 @@
 .card-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 75%;
+    padding: 2em 2em 2em 10%;
+    margin-left: 4em;
 
-    .number-inputs {
+    .card-form-body {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 0 4em;
+        padding: 2em 0;
 
-        .ui-input {
-            width: 12%;
+        .number-inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 10%;
+        }
+
+        .text-inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 80%;
+
+            .small-inputs {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+            }
+
+            .ui-textarea {
+                padding-top: 3em;
+            }
         }
     }
 
-    .ui-input, .ui-textarea, .ui-button {
-        align-self: flex-end;
-    }
-
-    .ui-input {
-        margin-top: 40px;
-    }
-
     .ui-button {
+        align-self: center;
         margin-top: 20px;
     }
 
-    .ui-textarea {
-        margin-top: 20px;
+    .ui-multi-select {
+        margin-bottom: 1em;
     }
 }

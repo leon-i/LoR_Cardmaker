@@ -36,35 +36,41 @@ const CardForm : React.FC<Props> = ({ card,
                     options={Object.values(SPELL_TYPES)} 
                     onClick={changeSpellType} />
             }
-            <div className='number-inputs'>
-                <Input label={'Mana'} 
-                    numOnly={true}
-                    value={card.mana} 
-                    onChange={(e) => changeMana(e.target.value)} />
-                <Input label={'Health'} 
-                    numOnly={true}
-                    value={card.health} 
-                    onChange={(e) => changeHealth(e.target.value)} />
-                <Input label={'Power'} 
-                    numOnly={true}
-                    value={card.power} 
-                    onChange={(e) => changePower(e.target.value)} />
+            <div className='card-form-body'>
+                <div className='number-inputs'>
+                    <Input label={'Mana'} 
+                        numOnly={true}
+                        value={card.mana} 
+                        onChange={(e) => changeMana(e.target.value)} />
+                    <Input label={'Health'} 
+                        numOnly={true}
+                        value={card.health} 
+                        onChange={(e) => changeHealth(e.target.value)} />
+                    <Input label={'Power'} 
+                        numOnly={true}
+                        value={card.power} 
+                        onChange={(e) => changePower(e.target.value)} />
+                </div>
+                <div className='text-inputs'>
+                    <div className='small-inputs'>
+                        <Input label={'Name'} 
+                            value={card.name} 
+                            onChange={(e) => changeName(e.target.value)} />
+                        <Input label={'Tribe'} 
+                            value={card.tribe} 
+                            onChange={(e) => changeTribe(e.target.value)} />
+                    </div>
+                    <Textarea label={'Description'}
+                        value={card.description}
+                        onChange={(e) => changeDescription(e.target.value)} />
+                    {
+                        card.cardType === 'champion' &&
+                        <Textarea label={'Level Up'}
+                            value={card.levelUp}
+                            onChange={(e) => changeLevelUp(e.target.value)} />
+                    }
+                </div>
             </div>
-            <Input label={'Name'} 
-                value={card.name} 
-                onChange={(e) => changeName(e.target.value)} />
-            <Textarea label={'Description'}
-                value={card.description}
-                onChange={(e) => changeDescription(e.target.value)} />
-            {
-                card.cardType === 'champion' &&
-                <Textarea label={'Level Up'}
-                value={card.levelUp}
-                onChange={(e) => changeLevelUp(e.target.value)} />
-            }
-            <Input label={'Tribe'} 
-                value={card.tribe} 
-                onChange={(e) => changeTribe(e.target.value)} />
             <MultiSelect label={'Card Rarity'} 
                 value={card.cardRarity}
                 options={rarities} 

@@ -1,9 +1,15 @@
 .card-display {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 25%;
+    padding-left: 1em;
 
     .card-main {
-        height: 100%;
         position: relative;
+        align-self: flex-start;
 
         .card-frame-container {
             display: flex;
@@ -19,30 +25,56 @@
                 height: 512px;
                 width: 340px;
                 z-index: 1;
+                pointer-events: none;
             }
 
             .uploaded-img-container {
                 position: absolute;
-                max-width: 300px;
-                max-height: 455px;
+                width: 300px;
+                height: 455px;
                 overflow: hidden;
                 z-index: 0;
 
                 img {
-                    height: 100%;
-                    width: 100%;
+                    height: 120%;
+                    width: initial;
                 }
             }
         }
 
-        .mana {
+        .mana, .health, .power, .name {
             position: absolute;
             z-index: 10;
-            top: 35px;
-            left: 20px;
             width: 50px;
             text-align: center;
             margin: 0;
         }
+
+        .mana {
+            top: 35px;
+            left: 20px;
+        }
+
+        .health {
+            top: 440px;
+            left: 20px;
+        }
+
+        .power {
+            top: 440px;
+            right: 20px;
+        }
+
+        .name {
+            top: 50%;
+            left: 20px;
+            width: 300px;
+        }
+    }
+
+    .slider {
+        // align-self: center;
+        width: 90%;
+        margin-bottom: 1em;
     }
 }
