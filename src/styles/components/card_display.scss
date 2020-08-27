@@ -11,6 +11,24 @@
         position: relative;
         align-self: flex-start;
 
+        .card-text {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            height: 350px;
+            width: 340px;
+            z-index: 10;
+            text-align: center;
+            pointer-events: none;
+
+            .name {
+                width: 280px;
+                overflow-wrap: break-word;
+            }
+        }
+
         .card-frame-container {
             display: flex;
             align-items: center;
@@ -30,8 +48,8 @@
 
             .uploaded-img-container {
                 position: absolute;
-                width: 300px;
                 height: 455px;
+                width: 300px;
                 overflow: hidden;
                 z-index: 0;
 
@@ -40,9 +58,39 @@
                     width: initial;
                 }
             }
+
+            .shader {
+                position: absolute;
+                bottom: 25px;
+                width: 300px;
+                background: rgb(0,0,0);
+                background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .spell-container {
+                height: 250px;
+                width: 220px;
+                top: 20px;
+                border-radius: 50%;
+            }
+
+            .region-icon {
+                position: absolute;
+                top: 425px;
+                left: 147px;
+                width: 50px;
+                opacity: 0.65;
+                z-index: 10;
+            }
+
+            .spell-position {
+                top: 410px;
+            }
         }
 
-        .mana, .health, .power, .name {
+        .mana, .health, .power {
             position: absolute;
             z-index: 10;
             width: 50px;
@@ -65,15 +113,16 @@
             right: 20px;
         }
 
-        .name {
-            top: 50%;
-            left: 20px;
-            width: 300px;
+        .level-condition {
+            position: absolute;
+            width: 340px;
+            top: 100%;
+            left: 0px;
+            z-index: 12;
         }
     }
 
     .slider {
-        // align-self: center;
         width: 90%;
         margin-bottom: 1em;
     }

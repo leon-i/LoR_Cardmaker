@@ -3,6 +3,7 @@ import { changeMana } from '../../actions/mana_actions';
 import { changeName } from '../../actions/name_actions';
 import { changeHealth, changePower } from '../../actions/card_stats_actions';
 import { changeDescription } from '../../actions/description_actions';
+import { changeRegion } from '../../actions/region_actions';
 import { changeTribe } from '../../actions/tribe_actions';
 import { changeLevelUp } from '../../actions/level_up_actions';
 import { changeCardType } from '../../actions/card_type_actions';
@@ -23,6 +24,7 @@ export interface Props {
     changeHealth: typeof changeHealth,
     changePower: typeof changePower,
     changeDescription: typeof changeDescription,
+    changeRegion: typeof changeRegion,
     changeTribe: typeof changeTribe,
     changeLevelUp: typeof changeLevelUp,
     changeCardType: typeof changeCardType,
@@ -41,6 +43,7 @@ const mapDispatchToProps = ({
     changeHealth,
     changePower,
     changeDescription,
+    changeRegion,
     changeTribe,
     changeLevelUp,
     changeCardType,

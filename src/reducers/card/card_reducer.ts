@@ -9,6 +9,7 @@ import { CHANGE_MANA, ManaActionTypes } from '../../actions/mana_actions';
 import { CHANGE_NAME, NameActionTypes } from '../../actions/name_actions';
 import { CHANGE_HEALTH, CHANGE_POWER, CardStatsActionTypes } from '../../actions/card_stats_actions';
 import { CHANGE_DESCRIPTION, DescriptionActionTypes } from '../../actions/description_actions';
+import { CHANGE_REGION, RegionActionTypes } from '../../actions/region_actions';
 import { CHANGE_TRIBE, TribeActionTypes } from '../../actions/tribe_actions';
 import { CHANGE_LEVEL_UP, LevelUpActionTypes } from '../../actions/level_up_actions';
 import { CHANGE_CARD_RARITY, CardRarityActionTypes} from '../../actions/card_rarity_actions';
@@ -24,6 +25,7 @@ export interface CardState {
     power: number | string,
     keywords?: string[],
     description: string,
+    region: string,
     tribe: string,
     levelUp: string,
     imageURL: string | ArrayBuffer | null,
@@ -36,7 +38,8 @@ type CardActionTypes = ManaActionTypes |
                     NameActionTypes | 
                     CardStatsActionTypes |
                     DescriptionActionTypes | 
-                    TribeActionTypes |
+                    RegionActionTypes | 
+                    TribeActionTypes | 
                     LevelUpActionTypes | 
                     CardRarityActionTypes | 
                     CardTypeActionTypes | 
@@ -58,6 +61,7 @@ const initialState : CardState = {
     health: '',
     power: '',
     description: '',
+    region: 'runeterra',
     tribe: '',
     levelUp: '',
     imageURL: '',
@@ -79,6 +83,8 @@ export default (state : CardState = initialState, action: CardActionTypes) : Car
             return Object.assign({}, state, { power: action.payload });
         case CHANGE_DESCRIPTION:
             return Object.assign({}, state, { description: action.payload });
+        case CHANGE_REGION:
+            return Object.assign({}, state, { region: action.payload });
         case CHANGE_TRIBE:
             return Object.assign({}, state, { tribe: action.payload });
         case CHANGE_LEVEL_UP:
@@ -86,15 +92,17 @@ export default (state : CardState = initialState, action: CardActionTypes) : Car
         case CHANGE_CARD_TYPE:
             if (action.payload === 'champion') {
                 return Object.assign({}, state, { cardType: action.payload, cardRarity: action.payload});
-            } else if (action.payload !== 'champion' && ['champion', 'leveled'].includes(state.cardRarity)) {
-                return Object.assign({}, state, { cardType: action.payload, cardRarity: 'uncollectable'})
             } else {
-                return Object.assign({}, state, { cardType: action.payload});
+                return Object.assign({}, state, { cardType: action.payload, cardRarity: 'uncollectable'});
             }
         case CHANGE_CARD_RARITY:
             return Object.assign({}, state, { cardRarity: action.payload });
         case CHANGE_SPELL_TYPE:
-            return Object.assign({}, state, { spellType: action.payload });
+            if (action.payload === 'skill') {
+                return Object.assign({}, state, { spellType: action.payload, cardRarity: 'uncollectable'});
+            } else {
+                return Object.assign({}, state, { spellType: action.payload });
+            }
         case UPLOAD_IMAGE:
             return Object.assign({}, state, { imageURL: action.payload });
         case RESET_CARD:

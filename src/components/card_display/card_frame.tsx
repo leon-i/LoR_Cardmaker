@@ -18,9 +18,6 @@ import slow_common from '../../assets/card_frames/spell/slow/common.png';
 import slow_rare from '../../assets/card_frames/spell/slow/rare.png';
 import slow_epic from '../../assets/card_frames/spell/slow/epic.png';
 import skill_uncollectable from '../../assets/card_frames/spell/skill/uncollectable.png';
-import skill_common from '../../assets/card_frames/spell/skill/common.png';
-import skill_rare from '../../assets/card_frames/spell/skill/rare.png';
-import skill_epic from '../../assets/card_frames/spell/skill/epic.png';
 
 interface Props {
     cardType: string,
@@ -28,7 +25,7 @@ interface Props {
     spellType: string
 }
 
-const getSource = (cardType: string, cardRarity : string) => {
+const getSource = (cardType: string, cardRarity : string) : string => {
     const combined = cardType + '_' + cardRarity;
     switch(combined) {
         case 'champion_champion':
@@ -69,17 +66,13 @@ const getSource = (cardType: string, cardRarity : string) => {
             return slow_epic;
         case 'skill_uncollectable':
             return skill_uncollectable;
-        case 'skill_common':
-            return skill_common;
-        case 'skill_rare':
-            return skill_rare;
-        case 'skill_epic':
-            return skill_epic;
+        default:
+            return '';
     }
 }
 
 const CardFrame : React.FC<Props> = ({ cardType, cardRarity, spellType }) => {
-    const source = cardType === 'spell' ? getSource(spellType, cardRarity) : getSource(cardType, cardRarity);
+    const source : string = cardType === 'spell' ? getSource(spellType, cardRarity) : getSource(cardType, cardRarity);
 
     return (
         <img src={source} className='card-frame' alt="card-frame"/>

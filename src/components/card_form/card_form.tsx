@@ -8,6 +8,7 @@ import { Props } from './card_form_container';
 import CARD_TYPES from '../../constants/card_types';
 import CARD_RARITIES from '../../constants/card_rarities';
 import SPELL_TYPES from '../../constants/spell_types';
+import RegionDisplay from '../region_display/region_display';
 
 const CardForm : React.FC<Props> = ({ card, 
     changeMana, 
@@ -15,13 +16,28 @@ const CardForm : React.FC<Props> = ({ card,
     changeHealth,
     changePower,
     changeDescription,
+    changeRegion,
     changeTribe,
     changeLevelUp,
     changeCardType,
     changeCardRarity,
     changeSpellType,
     resetCard }) => {
-    const rarities = card.cardType === 'champion' ? Object.values(CARD_RARITIES).slice(4) : Object.values(CARD_RARITIES).slice(0, 4);
+    // const rarities = card.cardType === 'champion' ? Object.values(CARD_RARITIES).slice(4) : Object.values(CARD_RARITIES).slice(0, 4);
+    let rarities;
+    const rarityArr = Object.values(CARD_RARITIES);
+
+    switch(card.cardType) {
+        case CARD_TYPES.CHAMPION:
+            rarities = rarityArr.slice(4);
+            break;
+        case CARD_TYPES.SPELL:
+            rarities = card.spellType === SPELL_TYPES.SKILL ? [ CARD_RARITIES.UNCOLLECTABLE ] : rarityArr.slice(0, 4);
+            break;
+        default:
+            rarities = rarityArr.slice(0, 4);
+            break;
+    }
     
     return (
         <div className='card-form'>
@@ -71,6 +87,9 @@ const CardForm : React.FC<Props> = ({ card,
                     }
                 </div>
             </div>
+            <RegionDisplay region={card.region} 
+                select={true} 
+                onClick={changeRegion} />
             <MultiSelect label={'Card Rarity'} 
                 value={card.cardRarity}
                 options={rarities} 
