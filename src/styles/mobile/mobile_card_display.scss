@@ -16,18 +16,18 @@
 
         .card-main {
             align-self: center;
+
+            .mana {
+                top: 35px;
+            }
+    
+            .health, .power {
+                top: 440px
+            }
         }
 
         .buttons {
             margin-bottom: 1em;
-        }
-
-        .mana {
-            top: 35px;
-        }
-
-        .health, .power {
-            top: 440px
         }
     }
 
