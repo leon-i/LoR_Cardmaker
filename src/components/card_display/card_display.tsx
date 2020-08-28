@@ -28,7 +28,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
     const [imageSizeState, setImageSizeState] = React.useState(120);
     const [shaderPositionState, setShaderPositionState] = React.useState(300);
     const [downloadingState, setDownloadingState] = React.useState(false);
-    
+
     const cardMain = React.useRef<HTMLDivElement>(null);
 
     const handleDownload = () => {
@@ -57,7 +57,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
         <div className='card-display'>
             <div className='card-main' ref={cardMain}>
                 {
-                    card.tribe !== '' &&
+                    (card.tribe !== '' && card.cardType !== 'spell') &&
                     <div className='tribe-container'>
                         <h4>{card.tribe}</h4>
                         <img src={tribe} alt='tribe-img' />
