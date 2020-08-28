@@ -21,6 +21,14 @@
         .buttons {
             margin-bottom: 1em;
         }
+
+        .mana {
+            top: 35px;
+        }
+
+        .health, .power {
+            top: 440px
+        }
     }
 
     .card-form {
@@ -66,6 +74,11 @@
 
         .multi-select-options {
             flex-wrap: wrap;
+        }
+
+        .image-options img {
+            height: 35px;
+            width: 35px;
         }
 
         .ui-button {
