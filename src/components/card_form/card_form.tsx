@@ -8,6 +8,7 @@ import { Props } from './card_form_container';
 import CARD_TYPES from '../../constants/card_types';
 import CARD_RARITIES from '../../constants/card_rarities';
 import SPELL_TYPES from '../../constants/spell_types';
+import DISPLAYED_KEYWORDS from '../../constants/displayed_keywords';
 import RegionDisplay from '../region_display/region_display';
 
 const CardForm : React.FC<Props> = ({ card, 
@@ -16,6 +17,8 @@ const CardForm : React.FC<Props> = ({ card,
     changeHealth,
     changePower,
     changeDescription,
+    addKeyword,
+    removeKeyword,
     changeRegion,
     changeTribe,
     changeLevelUp,
@@ -86,6 +89,12 @@ const CardForm : React.FC<Props> = ({ card,
                             onChange={(e) => changeLevelUp(e.target.value)} />
                     }
                 </div>
+                <Select label={'Keywords'} 
+                    options={Object.values(DISPLAYED_KEYWORDS)} 
+                    values={card.keywords} 
+                    onClickAdd={(e) => addKeyword(e.target.innerHTML)}
+                    onClickRemove={(e) => removeKeyword(e.target.innerHTML)}
+                    large={card.cardType === 'champion'} />
             </div>
             <RegionDisplay region={card.region} 
                 select={true} 

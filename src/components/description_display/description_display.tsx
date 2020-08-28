@@ -1,6 +1,7 @@
 import React from 'react';
 import KEYWORDS from '../../constants/keywords';
 import barrier from '../../assets/keywords/description/barrier.png';
+import burst from '../../assets/keywords/description/burst.png';
 import cantBlock from '../../assets/keywords/description/cant_block.png';
 import capture from '../../assets/keywords/description/capture.png';
 import challenger from '../../assets/keywords/description/challenger.png';
@@ -8,6 +9,7 @@ import deep from '../../assets/keywords/description/deep.png';
 import doubleAttack from '../../assets/keywords/description/double_attack.png';
 import elusive from '../../assets/keywords/description/elusive.png';
 import ephemeral from '../../assets/keywords/description/ephemeral.png';
+import fast from '../../assets/keywords/description/fast.png';
 import fearsome from '../../assets/keywords/description/fearsome.png';
 import fleeting from '../../assets/keywords/description/fleeting.png';
 import frostbite from '../../assets/keywords/description/frostbite.png';
@@ -19,8 +21,9 @@ import overwhelm from '../../assets/keywords/description/overwhelm.png';
 import quickAttack from '../../assets/keywords/description/quick_attack.png';
 import regeneration from '../../assets/keywords/description/regeneration.png';
 import scout from '../../assets/keywords/description/scout.png';
-import skill from '../../assets/keywords/description/skill.png';
 import silence from '../../assets/keywords/description/silence.png';
+import skill from '../../assets/keywords/description/skill.png';
+import slow from '../../assets/keywords/description/slow.png';
 import spellshield from '../../assets/keywords/description/spellshield.png';
 import stun from '../../assets/keywords/description/stun.png';
 import tough from '../../assets/keywords/description/tough.png';
@@ -38,6 +41,7 @@ const definers = [
 
 const paths = {
     [KEYWORDS.BARRIER]: barrier,
+    [KEYWORDS.BURST]: burst,
     [KEYWORDS.CANT_BLOCK]: cantBlock,
     [KEYWORDS.CAPTURE]: capture,
     [KEYWORDS.CHALLENGER]: challenger,
@@ -45,6 +49,7 @@ const paths = {
     [KEYWORDS.DOUBLE_ATTACK]: doubleAttack,
     [KEYWORDS.ELUSIVE]: elusive,
     [KEYWORDS.EPHEMERAL]: ephemeral,
+    [KEYWORDS.FAST]: fast,
     [KEYWORDS.FEARSOME]: fearsome,
     [KEYWORDS.FLEETING]: fleeting,
     [KEYWORDS.FROSTBITE]: frostbite,
@@ -58,6 +63,7 @@ const paths = {
     [KEYWORDS.SCOUT]: scout,
     [KEYWORDS.SILENCE]: silence,
     [KEYWORDS.SKILL]: skill,
+    [KEYWORDS.SLOW]: slow,
     [KEYWORDS.SPELLSHIELD]: spellshield,
     [KEYWORDS.STUN]: stun,
     [KEYWORDS.TOUGH]: tough,

@@ -1,7 +1,7 @@
 .card-form {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 80%;
     padding: 2em 2em 2em 10%;
     margin-left: 4em;
 
@@ -9,7 +9,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 2em 0;
+        padding: 0.5em 0 1.5em 0;
 
         .number-inputs {
             display: flex;
@@ -22,7 +22,8 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            width: 80%;
+            width: 70%;
+            padding: 0 3em;
 
             .small-inputs {
                 display: flex;

@@ -2,12 +2,13 @@ import React from 'react';
 
 interface Props {
     children: React.ReactNode,
+    loading?: boolean,
     onClick: () => void
 }
 
-const Button : React.FC<Props> = ({ children, onClick }) => (
+const Button : React.FC<Props> = ({ children, loading, onClick }) => (
     <button className='ui-button' onClick={onClick}>
-        {children}
+        {loading ? 'Loading...' : children}
     </button>
 );
 

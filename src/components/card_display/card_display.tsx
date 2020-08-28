@@ -4,11 +4,16 @@ import Draggable from 'react-draggable';
 import { uploadImage } from '../../actions/upload_image_actions';
 import { CardState } from '../../reducers/card/card_reducer';
 import CardFrame from './card_frame';
+import KeywordDisplay from '../keyword_display/keyword_display';
 import RegionDisplay from '../region_display/region_display';
 import UploadButton from '../ui/upload_button';
+import Button from '../ui/button';
 import Slider from '../ui/slider';
 import DescriptionDisplay from '../description_display/description_display';
+import tribe from '../../assets/card_frames/tribe.png';
 import level_condition from '../../assets/card_frames/champion/level_condition.png';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
 
 interface RootState {
     card: CardState
@@ -22,28 +27,67 @@ interface Props {
 const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
     const [imageSizeState, setImageSizeState] = React.useState(120);
     const [shaderPositionState, setShaderPositionState] = React.useState(300);
-    const uploadedImgContainerClass = card.cardType === 'spell' ? 'uploaded-img-container spell-container' : 'uploaded-img-container';
+    const [downloadingState, setDownloadingState] = React.useState(false);
+    
+    const cardMain = React.useRef<HTMLDivElement>(null);
+
+    const handleDownload = () => {
+        if (cardMain.current !== null) {
+            setDownloadingState(true);
+            domtoimage.toBlob(cardMain.current, { quality: 1 })
+            .then(function (blob) {
+                setDownloadingState(false);
+                saveAs(blob, `${card.name}.png`);
+            });
+        }
+    }
+    
+    let uploadedImgContainerClass;
+    let cardTextClass;
+
+    if (card.cardType === 'spell') {
+        uploadedImgContainerClass = 'uploaded-img-container spell-container';
+        cardTextClass = 'card-text spell-text';
+    } else {
+        uploadedImgContainerClass = 'uploaded-img-container';
+        cardTextClass = 'card-text';
+    }
 
     return (
         <div className='card-display'>
-            <div className='card-main'>
+            <div className='card-main' ref={cardMain}>
+                {
+                    card.tribe !== '' &&
+                    <div className='tribe-container'>
+                        <h4>{card.tribe}</h4>
+                        <img src={tribe} alt='tribe-img' />
+                    </div>
+                }
                 <p className='mana'>{card.mana}</p>
-                <p className='health'>{card.health}</p>
-                <p className='power'>{card.power}</p>
-                <div className='card-text'>
+                {
+                    card.cardType !== 'spell' &&
+                    <>
+                        <p className='health'>{card.health}</p>
+                        <p className='power'>{card.power}</p>
+                    </>
+                }
+                <div className={cardTextClass}>
                     <h2 className='name'>{card.name}</h2>
+                    {
+                        card.keywords.length > 0 && 
+                        <KeywordDisplay keywords={card.keywords} />
+                    }
                     <DescriptionDisplay description={card.description} />
                     {
                         (card.cardType === 'champion' && card.cardRarity === 'champion') &&
-                        <img src={level_condition} className='level-condition' alt='level-condition' />
+                        <>
+                            <img src={level_condition} className='level-condition' alt='level-condition' />
+                            <div className='level-text-container'>
+                                <DescriptionDisplay description={card.levelUp} />
+                            </div>
+                        </>
                     }
                 </div>
-                {
-                    (card.cardType === 'champion' && card.cardRarity === 'champion') &&
-                    <div className='level-text-container'>
-                        <DescriptionDisplay description={card.levelUp} />
-                    </div>
-                }
                 <div className='card-frame-container'>
                     {
                         card.imageURL &&
@@ -78,9 +122,14 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                     value={shaderPositionState} 
                     onChange={(e) => setShaderPositionState(e.target.value)} />
             }
-            <UploadButton onUpload={uploadImage}>
-                Upload
-            </UploadButton>
+            <div className='buttons'>
+                <UploadButton onUpload={uploadImage}>
+                    Upload
+                </UploadButton>
+                <Button onClick={handleDownload} loading={downloadingState}>
+                    Download
+                </Button>
+            </div>
         </div>
     )
 };

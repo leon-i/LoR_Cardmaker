@@ -11,13 +11,36 @@
         position: relative;
         align-self: flex-start;
 
+        .tribe-container {
+            position: absolute;
+            top: 8px;
+            left: 95px;
+            z-index: 10;
+
+            h4 {
+                position: absolute;
+                width: 100px;
+                font-family: 'Univers-UltraCondensed';
+                text-transform: uppercase;
+                top: 9.5px;
+                left: 25.5px;
+                text-align: center;
+                color: #9E9D99;
+                overflow: hidden;
+            }
+
+            img {
+                width: 150px;
+            }
+        }
+
         .card-text, .level-text-container {
             position: absolute;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            height: 350px;
+            height: 435px;
             width: 340px;
             z-index: 10;
             text-align: center;
@@ -31,6 +54,20 @@
                 text-transform: uppercase;
                 width: 280px;
                 overflow-wrap: break-word;
+            }
+
+            .keyword-display {
+                width: 280px;
+
+                .keyword-full {
+                    height: 45px;
+                    padding-top: 10px;
+                }
+
+                .keyword-icon {
+                    height: 40px;
+                    padding: 10px 5px;
+                }
             }
 
             .description {
@@ -56,12 +93,20 @@
             }
         }
 
+        .spell-text {
+            top: 290px;
+            height: 180px;
+            justify-content: flex-start;
+        }
+
         .level-text-container {
-            top: 420px;
-            height: 0px;
+            position: relative;
+            justify-content: flex-start;
+            height: 45px;
 
             .description {
                 color: #C4926E;
+                margin: 0px;
             }
         }
 
@@ -97,7 +142,7 @@
 
             .shader {
                 position: absolute;
-                bottom: 25px;
+                bottom: 30px;
                 width: 300px;
                 background: rgb(0,0,0);
                 background: linear-gradient(0deg, rgba(0,0,0,1) 20%, rgba(255,255,255,0) 100%);
@@ -151,11 +196,19 @@
         }
 
         .level-condition {
-            position: absolute;
+            position: relative;
             width: 340px;
-            top: 100%;
-            left: 0px;
-            z-index: 12;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .ui-button:last-of-type{
+            margin-left: 10px;
         }
     }
 

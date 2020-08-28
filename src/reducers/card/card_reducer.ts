@@ -1,14 +1,8 @@
-// import { combineReducers } from 'redux';
-// import manaReducer from './mana_reducer';
-// import nameReducer from './name_reducer';
-// import descriptionReducer from './description_reducer';
-// import cardTypeReducer from './card_type_reducer';
-// import cardRarityReducer from './card_rarity_reducer';
-
 import { CHANGE_MANA, ManaActionTypes } from '../../actions/mana_actions';
 import { CHANGE_NAME, NameActionTypes } from '../../actions/name_actions';
 import { CHANGE_HEALTH, CHANGE_POWER, CardStatsActionTypes } from '../../actions/card_stats_actions';
 import { CHANGE_DESCRIPTION, DescriptionActionTypes } from '../../actions/description_actions';
+import { ADD_KEYWORD, REMOVE_KEYWORD, KeywordActionTypes } from '../../actions/keyword_actions';
 import { CHANGE_REGION, RegionActionTypes } from '../../actions/region_actions';
 import { CHANGE_TRIBE, TribeActionTypes } from '../../actions/tribe_actions';
 import { CHANGE_LEVEL_UP, LevelUpActionTypes } from '../../actions/level_up_actions';
@@ -23,7 +17,7 @@ export interface CardState {
     name: string,
     health: number | string,
     power: number | string,
-    keywords?: string[],
+    keywords: string[],
     description: string,
     region: string,
     tribe: string,
@@ -38,6 +32,7 @@ type CardActionTypes = ManaActionTypes |
                     NameActionTypes | 
                     CardStatsActionTypes |
                     DescriptionActionTypes | 
+                    KeywordActionTypes |
                     RegionActionTypes | 
                     TribeActionTypes | 
                     LevelUpActionTypes | 
@@ -47,20 +42,13 @@ type CardActionTypes = ManaActionTypes |
                     UploadImageActionTypes | 
                     ResetCardAction;
 
-// export default combineReducers({
-//     mana: manaReducer,
-//     name: nameReducer,
-//     description: descriptionReducer,
-//     cardType: cardTypeReducer,
-//     cardRarity: cardRarityReducer
-// });
-
 const initialState : CardState = {
     mana: '',
     name: '',
     health: '',
     power: '',
     description: '',
+    keywords: [],
     region: 'runeterra',
     tribe: '',
     levelUp: '',
@@ -83,6 +71,12 @@ export default (state : CardState = initialState, action: CardActionTypes) : Car
             return Object.assign({}, state, { power: action.payload });
         case CHANGE_DESCRIPTION:
             return Object.assign({}, state, { description: action.payload });
+        case ADD_KEYWORD:
+            return Object.assign({}, state, { keywords: [...state.keywords, action.payload ]});
+        case REMOVE_KEYWORD:
+            const idx = state.keywords.indexOf(action.payload);
+            const newKeywordState = state.keywords.slice(0, idx).concat(state.keywords.slice(idx + 1));
+            return Object.assign({}, state, { keywords: newKeywordState });
         case CHANGE_REGION:
             return Object.assign({}, state, { region: action.payload });
         case CHANGE_TRIBE:
