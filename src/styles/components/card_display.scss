@@ -11,7 +11,7 @@
         position: relative;
         align-self: flex-start;
 
-        .card-text {
+        .card-text, .level-text-container {
             position: absolute;
             display: flex;
             flex-direction: column;
@@ -24,8 +24,44 @@
             pointer-events: none;
 
             .name {
+                font-family: 'BeaufortforLOLJa-Bold';
+                font-size: 2em;
+                font-weight: bold;
+                color: #fff;
+                text-transform: uppercase;
                 width: 280px;
                 overflow-wrap: break-word;
+            }
+
+            .description {
+                font-family: 'Univers';
+                font-size: 1em;
+                color: #fff;
+                margin: 10px 0;
+                width: 260px;
+                overflow-wrap: break-word;
+
+                .keyword {
+                    color: #E8CB6E;
+                }
+    
+                .card-reference {
+                    color: #4E8CC8;
+                }
+    
+                .inline-icon {
+                    width: 20px;
+                    vertical-align: text-bottom;
+                }
+            }
+        }
+
+        .level-text-container {
+            top: 420px;
+            height: 0px;
+
+            .description {
+                color: #C4926E;
             }
         }
 
@@ -95,21 +131,22 @@
             z-index: 10;
             width: 50px;
             text-align: center;
+            font-family: 'BeaufortforLOLJa-Bold';
             margin: 0;
         }
 
         .mana {
-            top: 35px;
+            top: 30px;
             left: 20px;
         }
 
         .health {
-            top: 440px;
+            top: 435px;
             left: 20px;
         }
 
         .power {
-            top: 440px;
+            top: 435px;
             right: 20px;
         }
 

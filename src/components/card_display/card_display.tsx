@@ -7,6 +7,7 @@ import CardFrame from './card_frame';
 import RegionDisplay from '../region_display/region_display';
 import UploadButton from '../ui/upload_button';
 import Slider from '../ui/slider';
+import DescriptionDisplay from '../description_display/description_display';
 import level_condition from '../../assets/card_frames/champion/level_condition.png';
 
 interface RootState {
@@ -30,13 +31,19 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                 <p className='health'>{card.health}</p>
                 <p className='power'>{card.power}</p>
                 <div className='card-text'>
-                    <p className='name'>{card.name}</p>
-                    <p className='name'>{card.description}</p>
+                    <h2 className='name'>{card.name}</h2>
+                    <DescriptionDisplay description={card.description} />
                     {
                         (card.cardType === 'champion' && card.cardRarity === 'champion') &&
                         <img src={level_condition} className='level-condition' alt='level-condition' />
                     }
                 </div>
+                {
+                    (card.cardType === 'champion' && card.cardRarity === 'champion') &&
+                    <div className='level-text-container'>
+                        <DescriptionDisplay description={card.levelUp} />
+                    </div>
+                }
                 <div className='card-frame-container'>
                     {
                         card.imageURL &&
