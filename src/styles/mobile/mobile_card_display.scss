@@ -1,0 +1,75 @@
+@include media('<=phone') {
+    .main-content {
+        padding-bottom: 20px;
+    }
+
+    .splash {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .card-display {
+        width: 100%;
+        padding: 0;
+
+        .card-main {
+            align-self: center;
+        }
+
+        .buttons {
+            margin-bottom: 1em;
+        }
+    }
+
+    .card-form {
+        margin: 0;
+        padding: 0;
+
+        .card-form-body {
+            flex-direction: column;
+            padding: 0;
+
+            .number-inputs {
+                flex-direction: row;
+                justify-content: space-evenly;
+                width: 100%;
+
+                input {
+                    width: 70%;
+                }
+            }
+
+            .text-inputs {
+                width: 100%;
+                padding: 0;
+
+                .small-inputs {
+                    justify-content: space-between;
+                    margin-top: 1.5em;
+
+                    .ui-input {
+                        width: 40%;
+                    }
+                }
+
+                .ui-textarea:last-of-type {
+                    padding-top: 20px;
+                }
+            }
+
+            .ui-select {
+                width: 100%;
+            }
+        }
+
+        .multi-select-options {
+            flex-wrap: wrap;
+        }
+
+        .ui-button {
+            margin-top: 10px;
+        }
+    }
+}
