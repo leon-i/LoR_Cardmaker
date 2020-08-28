@@ -6,12 +6,13 @@
 ![image](https://user-images.githubusercontent.com/56734437/91614957-8b2f2680-e950-11ea-8c5d-8ca74a5c667f.png)  
   
 ## Technologies Used  
- * **React**
- * **Redux**
- * **TypeScript**
- * **[React-Draggable](https://github.com/STRML/react-draggable)** - *enables users to adjust position of uploaded images*
+ * **React**  
+ * **Redux**  
+ * **TypeScript**  
+ * **[React-Draggable](https://github.com/STRML/react-draggable)** - *enables users to adjust position of uploaded images*  
  * **[dom-to-image](https://github.com/tsayen/dom-to-image)** - *converts card DOM element to image so user can download*  
- * **[FileSaver.js](https://github.com/eligrey/FileSaver.js/)** - *allows user to download custom card*
+ * **[FileSaver.js](https://github.com/eligrey/FileSaver.js/)** - *allows user to download custom card*  
+ * **[include-media](https://github.com/eduardoboucas/include-media)** - *sass media queries for mobile view*
   
 ## Features
   
