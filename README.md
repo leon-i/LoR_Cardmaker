@@ -19,7 +19,7 @@
   
 ![image](https://user-images.githubusercontent.com/56734437/91615301-3cce5780-e951-11ea-9060-93e454866fef.png)  
   
-User input for description/level condition is scanned by the `description_display.tsx` component. Words denoted with special characters are given inline styling or converted to inline keyword images. As seen below, this is done by the `scanner()` function, which triggers the conversion when it detects that a user inputted word is wrapped in one `definers`.
+User input for description/level condition is scanned by the `DescriptionDisplay` component. Words denoted with special characters are given inline styling or converted to inline keyword images. As seen below, this is done by the `scanner()` function, which triggers the conversion when it detects that a user inputted word is wrapped in one `definers`.
   
 ``` javascript
 const scanner = (word : string, idx: number) => {
