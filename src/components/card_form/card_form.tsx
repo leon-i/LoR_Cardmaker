@@ -60,14 +60,14 @@ const CardForm : React.FC<Props> = ({ card,
                         numOnly={true}
                         value={card.mana} 
                         onChange={(e) => changeMana(e.target.value)} />
-                    <Input label={'Health'} 
-                        numOnly={true}
-                        value={card.health} 
-                        onChange={(e) => changeHealth(e.target.value)} />
                     <Input label={'Power'} 
                         numOnly={true}
                         value={card.power} 
                         onChange={(e) => changePower(e.target.value)} />
+                    <Input label={'Health'} 
+                        numOnly={true}
+                        value={card.health} 
+                        onChange={(e) => changeHealth(e.target.value)} />
                 </div>
                 <div className='text-inputs'>
                     <div className='small-inputs'>
