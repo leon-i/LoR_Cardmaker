@@ -26,7 +26,6 @@ const CardForm : React.FC<Props> = ({ card,
     changeCardRarity,
     changeSpellType,
     resetCard }) => {
-    // const rarities = card.cardType === 'champion' ? Object.values(CARD_RARITIES).slice(4) : Object.values(CARD_RARITIES).slice(0, 4);
     let rarities;
     const rarityArr = Object.values(CARD_RARITIES);
 
