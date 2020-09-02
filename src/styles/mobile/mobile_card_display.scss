@@ -69,6 +69,16 @@
 
             .ui-select {
                 width: 100%;
+                margin-bottom: 16px;
+
+                .select-options {
+                    padding-top: 380px;
+                }
+
+                h5 {
+                    font-size: 1em;
+                    padding: 8px 10px 8px 0;
+                }
             }
         }
 
