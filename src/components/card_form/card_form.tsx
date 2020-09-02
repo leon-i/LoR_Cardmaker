@@ -40,6 +40,8 @@ const CardForm : React.FC<Props> = ({ card,
             rarities = rarityArr.slice(0, 4);
             break;
     }
+
+    const isLevelOneChampion : boolean = (card.cardType === CARD_TYPES.CHAMPION && card.cardRarity === CARD_RARITIES.CHAMPION);
     
     return (
         <div className='card-form'>
@@ -48,7 +50,7 @@ const CardForm : React.FC<Props> = ({ card,
                 options={Object.values(CARD_TYPES)} 
                 onClick={changeCardType} />
             {
-                card.cardType === 'spell' && 
+                card.cardType === CARD_TYPES.SPELL && 
                 <MultiSelect label={'Spell Type'} 
                     value={card.spellType}
                     options={Object.values(SPELL_TYPES)} 
@@ -82,7 +84,7 @@ const CardForm : React.FC<Props> = ({ card,
                         value={card.description}
                         onChange={(e) => changeDescription(e.target.value)} />
                     {
-                        card.cardType === 'champion' &&
+                        isLevelOneChampion &&
                         <Textarea label={'Level Up'}
                             value={card.levelUp}
                             onChange={(e) => changeLevelUp(e.target.value)} />
@@ -93,7 +95,7 @@ const CardForm : React.FC<Props> = ({ card,
                     values={card.keywords} 
                     onClickAdd={(e) => addKeyword(e.target.innerHTML)}
                     onClickRemove={(e) => removeKeyword(e.target.innerHTML)}
-                    large={card.cardType === 'champion'} />
+                    large={isLevelOneChampion} />
             </div>
             <RegionDisplay region={card.region} 
                 select={true} 

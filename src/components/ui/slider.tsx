@@ -8,13 +8,11 @@ interface Props {
     onChange: (e : any) => void
 }
 
-const Slider : React.FC<Props> = ({ label, min, max, value, onChange }) => {
-    return (
-        <div className='ui-input slider'>
-            <span>{label}</span>
-            <input type="range" min={min} max={max} value={value} onChange={onChange}></input>
-        </div>
-    )
-};
+const Slider : React.FC<Props> = ({ label, min, max, value, onChange }) => (
+    <div className='ui-input slider'>
+        <span>{label}</span>
+        <input type="range" min={min} max={max} value={value} onChange={onChange}></input>
+    </div>
+);
 
 export default Slider;

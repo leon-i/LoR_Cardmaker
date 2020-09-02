@@ -12,6 +12,7 @@ import Slider from '../ui/slider';
 import DescriptionDisplay from '../description_display/description_display';
 import tribe from '../../assets/card_frames/tribe.png';
 import level_condition from '../../assets/card_frames/champion/level_condition.png';
+import CARD_TYPES from '../../constants/card_types';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 
@@ -25,9 +26,9 @@ interface Props {
 }
 
 const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
-    const [imageSizeState, setImageSizeState] = React.useState(120);
-    const [shaderPositionState, setShaderPositionState] = React.useState(300);
-    const [downloadingState, setDownloadingState] = React.useState(false);
+    const [imageSizeState, setImageSizeState] = React.useState<number>(120);
+    const [shaderPositionState, setShaderPositionState] = React.useState<number>(300);
+    const [downloadingState, setDownloadingState] = React.useState<boolean>(false);
 
     const cardMain = React.useRef<HTMLDivElement>(null);
 
@@ -41,23 +42,14 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
             });
         }
     }
-    
-    let uploadedImgContainerClass;
-    let cardTextClass;
 
-    if (card.cardType === 'spell') {
-        uploadedImgContainerClass = 'uploaded-img-container spell-container';
-        cardTextClass = 'card-text spell-text';
-    } else {
-        uploadedImgContainerClass = 'uploaded-img-container';
-        cardTextClass = 'card-text';
-    }
+    const isSpell : boolean = card.cardType === CARD_TYPES.SPELL;
 
     return (
         <div className='card-display'>
             <div className='card-main' ref={cardMain}>
                 {
-                    (card.tribe !== '' && card.cardType !== 'spell') &&
+                    (card.tribe !== '' && !isSpell) &&
                     <div className='tribe-container'>
                         <h4>{card.tribe}</h4>
                         <img src={tribe} alt='tribe-img' />
@@ -65,13 +57,15 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                 }
                 <p className='mana'>{card.mana}</p>
                 {
-                    card.cardType !== 'spell' &&
+                    !isSpell &&
                     <>
                         <p className='health'>{card.health}</p>
                         <p className='power'>{card.power}</p>
                     </>
                 }
-                <div className={cardTextClass}>
+                <div className={isSpell ? 
+                    'card-text spell-text' : 
+                    'card-text'}>
                     <h2 className='name'>{card.name}</h2>
                     {
                         card.keywords.length > 0 && 
@@ -91,7 +85,9 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                 <div className='card-frame-container'>
                     {
                         card.imageURL &&
-                        <div className={uploadedImgContainerClass}>
+                        <div className={isSpell ? 
+                            'uploaded-img-container spell-container' : 
+                            'uploaded-img-container'}>
                             <Draggable>
                                 <img className='uploaded-img' 
                                     src={String(card.imageURL)} 
@@ -102,7 +98,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                         </div>
                     }
                     {
-                        card.cardType !== 'spell' &&
+                        !isSpell &&
                         <div className='shader' style={{ height: `${shaderPositionState}px` }}></div>
                     }
                     <RegionDisplay region={card.region} cardType={card.cardType} onClick={() => null} />
@@ -116,7 +112,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                 value={imageSizeState} 
                 onChange={(e) => setImageSizeState(e.target.value)} />
             {
-                card.cardType !== 'spell' &&
+                !isSpell &&
                 <Slider label={'Shader'} 
                     min={"50"}
                     max={"550"}
