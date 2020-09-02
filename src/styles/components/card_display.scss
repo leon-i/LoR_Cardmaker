@@ -87,8 +87,11 @@
                 }
     
                 .inline-icon {
-                    width: 18px;
-                    vertical-align: text-bottom;
+                    height: 1em;
+                    width: 1em;
+                    object-fit: contain;
+                    vertical-align: bottom;
+                    margin-right: -2px;
                 }
             }
         }
