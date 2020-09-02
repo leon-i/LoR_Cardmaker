@@ -85,7 +85,7 @@ Users are able to control the uploaded image's size via the `Slider` component i
     max={"180"}
     value={imageSizeState} 
     onChange={(e) => setImageSizeState(e.target.value)} />
-```
+```  
 
 ## Available Scripts
 
@@ -130,4 +130,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+To learn React, check out the [React documentation](https://reactjs.org/).  
+  
+## Disclaimer ##
+  
+This is a fan-made project, all assets copyright Riot Games.
