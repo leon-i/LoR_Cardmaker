@@ -109,6 +109,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
                     <CardFrame cardType={card.cardType} cardRarity={card.cardRarity} spellType={card.spellType} />
                 </div>
             </div>
+            <strong>Click and drag uploaded image to reposition.</strong>
             <Slider label={'Size'} 
                 min={"60"}
                 max={"180"}
