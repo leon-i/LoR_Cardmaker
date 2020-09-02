@@ -25,13 +25,13 @@
             cursor: pointer;
 
             &:hover {
-                color: #E8175D;
+                color: $deep-pink;
                 transition: ease-in-out 0.2s;
             }
         }
 
         .selected {
-            color: #E8175D;
+            color: $deep-pink;
         }
     }
 

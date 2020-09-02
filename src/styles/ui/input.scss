@@ -9,23 +9,23 @@
 
     &:focus-within {
         span {
-            color: #E8175D;
+            color: $deep-pink;
             transition: ease-in-out 0.2s;
         }
 
         input {
-            border-color: #E8175D;
+            border-color: $deep-pink;
         }
     }
 
     &:hover {
         span {
-            color: #E8175D;
+            color: $deep-pink;
             transition: ease-in-out 0.2s;
         }
 
         input {
-            border-color: #E8175D;
+            border-color: $deep-pink;
             transition: ease-in-out 0.2s;
         }
     }

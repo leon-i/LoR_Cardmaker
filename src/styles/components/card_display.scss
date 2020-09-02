@@ -79,11 +79,11 @@
                 overflow-wrap: break-word;
 
                 .keyword {
-                    color: #E8CB6E;
+                    color: $keyword;
                 }
     
                 .card-reference {
-                    color: #4E8CC8;
+                    color: $card-reference;
                 }
     
                 .inline-icon {
@@ -106,7 +106,7 @@
             left: 2px;
 
             .description {
-                color: #C4926E;
+                color: $level-text;
                 margin: 0px;
                 width: 265px;
             }
