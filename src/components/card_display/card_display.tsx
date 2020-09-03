@@ -15,6 +15,8 @@ import level_condition from '../../assets/card_frames/champion/level_condition.p
 import CARD_TYPES from '../../constants/card_types';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import { useMediaQuery } from 'react-responsive';
+import html2canvas from 'html2canvas';
 
 interface RootState {
     card: CardState
@@ -31,15 +33,24 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
     const [downloadingState, setDownloadingState] = React.useState<boolean>(false);
 
     const cardMain = React.useRef<HTMLDivElement>(null);
+    const isMobile = useMediaQuery({ maxWidth: 420 });
 
     const handleDownload = () => {
         if (cardMain.current !== null) {
             setDownloadingState(true);
-            domtoimage.toPng(cardMain.current)
-            .then(function (blob) {
-                setDownloadingState(false);
-                saveAs(blob, `${card.name}.png`);
-            });
+
+            if (isMobile) {
+                html2canvas(cardMain.current).then(canvas => {
+                    setDownloadingState(false);
+                    saveAs(canvas.toDataURL(), `${card.name}.png`);
+                });
+            } else {
+                domtoimage.toPng(cardMain.current)
+                .then(function (blob) {
+                    setDownloadingState(false);
+                    saveAs(blob, `${card.name}.png`);
+                });
+            }
         }
     }
 
