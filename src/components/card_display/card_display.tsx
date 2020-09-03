@@ -35,7 +35,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
     const handleDownload = () => {
         if (cardMain.current !== null) {
             setDownloadingState(true);
-            domtoimage.toBlob(cardMain.current, { quality: 1 })
+            domtoimage.toPng(cardMain.current)
             .then(function (blob) {
                 setDownloadingState(false);
                 saveAs(blob, `${card.name}.png`);
