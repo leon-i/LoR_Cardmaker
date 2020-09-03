@@ -40,7 +40,7 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
             setDownloadingState(true);
 
             if (isMobile) {
-                html2canvas(cardMain.current).then(canvas => {
+                html2canvas(cardMain.current, { scrollY: -window.scrollY }).then(canvas => {
                     setDownloadingState(false);
                     saveAs(canvas.toDataURL(), `${card.name}.png`);
                 });
