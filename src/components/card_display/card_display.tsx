@@ -15,6 +15,10 @@ import level_condition from '../../assets/card_frames/champion/level_condition.p
 import CARD_TYPES from '../../constants/card_types';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
+import GifEncoder from 'gif-encoder';
+import concat from 'concat-stream';
+import JSZip from 'jszip';
+// import fs from 'fs';
 
 interface RootState {
     card: CardState
@@ -25,6 +29,17 @@ interface Props {
     uploadImage: typeof uploadImage
 }
 
+const pixelsToGIF = (pixels : any, width : number, height : number) =>
+  new Promise((resolve, reject) => {
+    const gif = new GifEncoder(width, height);
+    gif.pipe(concat(resolve(gif)));
+    gif.writeHeader();
+    gif.addFrame(pixels);
+    gif.finish();
+    gif.on('error', reject);
+    debugger
+})
+
 const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
     const [imageSizeState, setImageSizeState] = React.useState<number>(120);
     const [shaderPositionState, setShaderPositionState] = React.useState<number>(300);
@@ -34,12 +49,31 @@ const CardDisplay : React.FC<Props> = ({ card, uploadImage }) => {
 
     const handleDownload = () => {
         if (cardMain.current !== null) {
+            const cardRender = cardMain.current;
             setDownloadingState(true);
-            domtoimage.toBlob(cardMain.current, { quality: 1 })
-            .then(function (blob) {
-                setDownloadingState(false);
-                saveAs(blob, `${card.name}.png`);
-            });
+
+            if (typeof card.imageURL === 'string' && card.imageURL.includes('gif')) {
+                const zip = new JSZip();
+                const height = cardRender.scrollHeight;
+                const width = cardRender.scrollWidth;
+                domtoimage.toPixelData(cardRender, { height, width })
+                .then(pixels => pixelsToGIF(pixels, width, height))
+                .then(gif => {
+                    debugger
+                    return zip.file(`${card.name}.gif`, gif) })
+                .then(zipped => {
+                    debugger
+                    setDownloadingState(false);
+                    saveAs(zipped, `${card.name}.zip`);
+                })
+                .catch(e => console.log('couldn\'t export to GIF', e));
+            } else {
+                domtoimage.toBlob(cardMain.current, { quality: 1 })
+                .then(function (blob) {
+                    setDownloadingState(false);
+                    saveAs(blob, `${card.name}.png`);
+                });
+            }
         }
     }
 
