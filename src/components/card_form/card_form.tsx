@@ -11,6 +11,19 @@ import SPELL_TYPES from '../../constants/spell_types';
 import DISPLAYED_KEYWORDS from '../../constants/displayed_keywords';
 import RegionDisplay from '../region_display/region_display';
 
+const getRarities = (cardType : string, spellType : string) => {
+    const rarityArr = Object.values(CARD_RARITIES);
+
+    switch(cardType) {
+        case CARD_TYPES.CHAMPION:
+            return rarityArr.slice(4);
+        case CARD_TYPES.SPELL:
+            return spellType === SPELL_TYPES.SKILL ? [ CARD_RARITIES.UNCOLLECTABLE ] : rarityArr.slice(0, 4);
+        default:
+            return rarityArr.slice(0, 4);
+    }
+};
+
 const CardForm : React.FC<Props> = ({ card, 
     changeMana, 
     changeName, 
@@ -26,22 +39,10 @@ const CardForm : React.FC<Props> = ({ card,
     changeCardRarity,
     changeSpellType,
     resetCard }) => {
-    let rarities;
-    const rarityArr = Object.values(CARD_RARITIES);
 
-    switch(card.cardType) {
-        case CARD_TYPES.CHAMPION:
-            rarities = rarityArr.slice(4);
-            break;
-        case CARD_TYPES.SPELL:
-            rarities = card.spellType === SPELL_TYPES.SKILL ? [ CARD_RARITIES.UNCOLLECTABLE ] : rarityArr.slice(0, 4);
-            break;
-        default:
-            rarities = rarityArr.slice(0, 4);
-            break;
-    }
-
-    const isLevelOneChampion : boolean = (card.cardType === CARD_TYPES.CHAMPION && card.cardRarity === CARD_RARITIES.CHAMPION);
+    const rarities = getRarities(card.cardType, card.spellType);
+    const isLevelOneChampion : boolean = (card.cardType === CARD_TYPES.CHAMPION 
+        && card.cardRarity === CARD_RARITIES.CHAMPION);
     
     return (
         <div className='card-form'>
@@ -109,7 +110,6 @@ const CardForm : React.FC<Props> = ({ card,
             </Button>
         </div>
     )
-
 };
 
 export default CardForm;
