@@ -9,16 +9,16 @@ const KEYWORD_REF = '!';
 const CARD_REF = '#';
 const ICON_REF = '*';
 
-const definers = [
-    KEYWORD_REF,
-    CARD_REF,
-    ICON_REF
-];
+const definers = {
+    [KEYWORD_REF]: true,
+    [CARD_REF]: true,
+    [ICON_REF]: true
+}
 
 const scanner = (word : string, idx: number) => {
     if (word.length <= 1) return ' ' + word;
 
-    if (definers.includes(word[0]) && word.slice(1).includes(word[0])) {
+    if (word[0] in definers && word.slice(1).includes(word[0])) {
         const endIdx = word.slice(1).indexOf(word[0]) + 1;
 
         switch(word[0]) {
